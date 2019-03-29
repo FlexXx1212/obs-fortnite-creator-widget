@@ -1,5 +1,5 @@
 body {
-    background: #00ff00;
+    background: rgba(0,0,0,0);
 }
 
 #main {
@@ -21,6 +21,33 @@ body {
     padding: 10px;
 }
 
+#boxTextbox {
+    background: white;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+#creatorCode {
+    color: black;
+    font-family: arial;
+    font-size: 30px;
+}
+
+.btnElem {
+    background: #3e5176;
+    border: 4px #717fa1 solid;
+    float: right;
+    margin: 5px;
+} 
+
+.btnText {
+    color: #afb5cd;
+    font-family: Arial;
+    font-size: 20px;
+    padding: 0px;
+    margin: 5px;
+}
+
 .grow{
     -webkit-transform:scale(1.0);
     -moz-transform:scale(1.0);
@@ -38,23 +65,39 @@ body {
 }
 
 .clicked {
-    background: lightgray !important;
-    color: gray !important;
+    border: 4px yellow solid !important;
+}
+
+.clicked-grow {
+    -webkit-transform:scale(1.1);
+    -moz-transform:scale(1.1);
+    -ms-transform:scale(1.1);
+    transform: scale(1.1);
+    transition: 200ms;
+    background: #1f293b;
+}
+
+.clicked-normal {
+    -webkit-transform:scale(1);
+    -moz-transform:scale(1);
+    -ms-transform:scale(1);
+    transform: scale(1);
+    transition: 100ms;
 }
 
 #pointer {
     position: absolute;
-    top: 160px;
+    top: 225px;
     right: 70px;
     width: 20px;
     visibility: hidden;
 }
 
 .flyIn {
-    -webkit-transform:translate(-30px,-100px);
-    -moz-transform:translate(-30px,-100px);
-    -ms-transform:translate(-30px,-100px);
-    transform:translate(-30px,-100px);
+    -webkit-transform:translate(-70px,-50px);
+    -moz-transform:translate(-70px,-50px);
+    -ms-transform:translate(-70px,-50px);
+    transform:translate(-70px,-50px);
     transition: 500ms;
 }
 
