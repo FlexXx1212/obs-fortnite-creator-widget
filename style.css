@@ -1,0 +1,67 @@
+body {
+    background: #00ff00;
+}
+
+#main {
+    background: #354060;
+    width: 640px;
+    height: 200px;
+}
+
+#boxHeader {
+    background: #020923;
+    
+}
+
+#headerTitle {
+    font-size: 30px;
+    color: white;
+    font-weight: bold;
+    font-family: Arial;
+    padding: 10px;
+}
+
+.grow{
+    -webkit-transform:scale(1.0);
+    -moz-transform:scale(1.0);
+    -ms-transform:scale(1.0);
+    transform:scale(1.0);
+    transition: 300ms;
+}
+
+.shrunk {
+    -webkit-transform:scale(0);
+    -moz-transform:scale(0);
+    -ms-transform:scale(0);
+    transform:scale(0);
+    transition: 300ms;
+}
+
+.clicked {
+    background: lightgray !important;
+    color: gray !important;
+}
+
+#pointer {
+    position: absolute;
+    top: 160px;
+    right: 70px;
+    width: 20px;
+    visibility: hidden;
+}
+
+.flyIn {
+    -webkit-transform:translate(-30px,-100px);
+    -moz-transform:translate(-30px,-100px);
+    -ms-transform:translate(-30px,-100px);
+    transform:translate(-30px,-100px);
+    transition: 500ms;
+}
+
+.flyOut {
+    -webkit-transform:translate(30px,100px);
+    -moz-transform:translate(30px,100px);
+    -ms-transform:translate(30px,100px);
+    transform:translate(30px,100px);
+    transition: 500ms;
+}
