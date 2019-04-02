@@ -1,4 +1,4 @@
-var main, creatorCode, pointer, mouseClick, btnOK, keypress;
+var main, creatorCode, pointer, mouseClick, btnOK, keypress, currentDelay, creatorCodeText;
 
 function setup() {
     main = document.getElementById("main");
@@ -11,49 +11,71 @@ function setup() {
     mouseClick.volume = 0.1;
     keypress.volume = 0.1;
 
-    setTimeout(animate,300);
+    var params = getParameters();
+
+    creatorCodeText = (typeof params.code === "undefined") ? "FLEXNIKO" : params.code;
+
+    setTimeout(animate, 300);
 }
 
+function getParameters() {
+    var parameterFragments = location.search.substr(1).split("&");
+    var parameters = {}
+    for (var i = 0; i < parameterFragments.length; i++) {
+        var splittedParameter = parameterFragments[i].split("=");
+        parameters[splittedParameter[0]] = decodeURIComponent(splittedParameter[1]);
+    }
+    return parameters;
+}
 
+function typeCreatorCode(code) {
+    for (var i = 0; i < code.length; i++) {
+        currentDelay += 200;
+        setTimeout(setCreatorDigit.bind(null, code[i], i === 0), currentDelay);
+    }
+}
+
+function setCreatorDigit(digit, overwrite) {
+    keypress.currentTime = 0;
+    keypress.play();
+    if (overwrite)
+        creatorCode.innerText = digit;
+    else
+        creatorCode.innerText += digit;
+}
 
 function animate() {
     main.classList.remove('shrunk');
     main.classList.add('grow');
 
-    setTimeout(function(){keypress.play(); creatorCode.innerText = "F"; },600);
-    setTimeout(function(){keypress.currentTime = 0; keypress.play(); creatorCode.innerText = "FL"; },800);
-    setTimeout(function(){keypress.currentTime = 0;keypress.play(); creatorCode.innerText = "FLE"; },1000);
-    setTimeout(function(){keypress.currentTime = 0;keypress.play(); creatorCode.innerText = "FLEX"; },1200);
-    setTimeout(function(){keypress.currentTime = 0;keypress.play(); creatorCode.innerText = "FLEXN"; },1400);
-    setTimeout(function(){keypress.currentTime = 0;keypress.play(); creatorCode.innerText = "FLEXNI"; },1600);
-    setTimeout(function(){keypress.currentTime = 0;keypress.play(); creatorCode.innerText = "FLEXNIK"; },1800);
-    setTimeout(function(){keypress.currentTime = 0;keypress.play(); creatorCode.innerText = "FLEXNIKO"; },2000);
+    currentDelay = 600;
 
-    setTimeout(function(){
+    typeCreatorCode(creatorCodeText);
+
+    setTimeout(function () {
         pointer.style.visibility = "visible";
         pointer.classList.add("flyIn");
-    },2500);
+    }, currentDelay += 500);
 
-    setTimeout(function(){
+    setTimeout(function () {
         btnOK.classList.add("clicked");
         btnOK.classList.add("clicked-grow");
         mouseClick.play();
-    },3000);
-    setTimeout(function(){
+    }, currentDelay += 500);
+    setTimeout(function () {
         btnOK.classList.remove("clicked-grow");
-        //btnOK.classList.add("clicked-normal");
         mouseClick.play();
-    },3200);
+    }, currentDelay += 200);
 
-    setTimeout(function(){
+    setTimeout(function () {
         pointer.classList.remove("flyIn");
         pointer.classList.add("flyOut");
-    },3500);
+    }, currentDelay += 300);
 
-    setTimeout(function(){
+    setTimeout(function () {
         main.classList.remove('grow');
         main.classList.add('shrunk');
-    },4500);
+    }, currentDelay += 1000);
 }
 
 setup();
